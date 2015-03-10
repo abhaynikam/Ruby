@@ -75,16 +75,6 @@ class KnightChess
 		
 	end
 
-	def closeNeighbours(all_neighbours)
-		
-		min = all_neighbours[2]
-		for i in 0...all_neighbours.length
-			if(all_neighbours[2]<min)
-				min = all_neighbours[2]
-			end
-		end
-		return min
-	end
 end
 
 print "Enter starting x co-odinate:"
