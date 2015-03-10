@@ -1,13 +1,13 @@
 class KnightChess
-	def initalize(x,y,sx,sy)
+	def initalize(x,y)
 		row,col = x,y
 		grid = Array.new(row) { Array.new(col,-1) }
 		grid[0][0] = 0
 		xMoves = [1,1,-1,-1,-2,-2,2,2]
 		yMoves = [2,-2,2,-2,1,-1,1,-1]
 
-		grid[sx][sy] = 0
-		if(solve(sx,sy,1,grid,xMoves,yMoves)==false)
+		grid[0][0] = 0
+		if(solve(0,0,1,grid,xMoves,yMoves)==false)
 			puts "No solution exist"
 			return false
 		else
@@ -40,7 +40,6 @@ class KnightChess
 		end
 		grid[x][y] = move
 		neighbours(x,y,xMoves,yMoves,grid,move)
-
 
 	end
 
@@ -77,9 +76,6 @@ class KnightChess
 
 end
 
-print "Enter starting x co-odinate:"
-sx = gets.chomp.to_i
-print "Enter starting y co-odinate:"
-sy = gets.chomp.to_i
+
 obj = KnightChess.new
-obj.initalize(8,8,sx,sy)
+obj.initalize(8,8)
