@@ -63,4 +63,5 @@ sx = gets.chomp.to_i
 print "Enter starting y co-odinate:"
 sy = gets.chomp.to_i
 
-ChessKnight.new.probability(8,8,sx,sy)
+obj = ChessKnight.new
+obj.probability(8,8,sx,sy)

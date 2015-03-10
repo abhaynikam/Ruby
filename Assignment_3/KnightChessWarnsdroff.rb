@@ -1,13 +1,12 @@
 class KnightChess
-	def initalize(x,y)
+	def initalize(x,y,sx,sy)
 		row,col = x,y
 		grid = Array.new(row) { Array.new(col,-1) }
-		grid[0][0] = 0
-		xMoves = [1,1,-1,-1,-2,-2,2,2]
-		yMoves = [2,-2,2,-2,1,-1,1,-1]
+		xMoves = [2,1,-1,-2,-2,-1,1,2]
+		yMoves = [1,2,2,1,-1,-2,-2,-1]
 
-		grid[0][0] = 0
-		if(solve(0,0,1,grid,xMoves,yMoves)==false)
+
+		if(solve(sx,sy,1,grid,xMoves,yMoves)==false)
 			puts "No solution exist"
 			return false
 		else
@@ -34,9 +33,9 @@ class KnightChess
 	end
 
 	def solve(x,y,move,grid,xMoves,yMoves)
-
-		if(move == grid.length*grid.length)
-			return true;
+		if(move == 64)
+			grid[x][y] = move
+			return true	
 		end
 		grid[x][y] = move
 		neighbours(x,y,xMoves,yMoves,grid,move)
@@ -71,11 +70,16 @@ class KnightChess
 		curr_x = x+xMoves[index]
 		curr_y = y+yMoves[index]
 		solve(curr_x,curr_y,move+1,grid,xMoves,yMoves)
-		
 	end
 
 end
 
+print "Enter ChessBoard (n*n):"
+n = gets.chomp.to_i
+print "Enter starting x co-odinate:"
+sx = gets.chomp.to_i
+print "Enter starting y co-odinate:"
+sy = gets.chomp.to_i
 
 obj = KnightChess.new
-obj.initalize(8,8)
+obj.initalize(n,n,sx,sy)
