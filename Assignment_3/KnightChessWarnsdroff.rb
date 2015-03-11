@@ -6,7 +6,7 @@ class KnightChess
 		yMoves = [1,2,2,1,-1,-2,-2,-1]
 
 
-		if(solve(sx,sy,1,grid,xMoves,yMoves)==false)
+		if(solve(sx,sy,1,grid,xMoves,yMoves,row)==false)
 			puts "No solution exist"
 			return false
 		else
@@ -25,24 +25,23 @@ class KnightChess
 		end
 	end
 
-	def is_safe(x,y,grid)
-		if(x>=0 && x<8 && y>=0 && y<8 && grid[x][y] == -1)	
+	def is_safe(x,y,grid,n)
+		if(x>=0 && x<n && y>=0 && y<n && grid[x][y] == -1)	
 			return true
 		end
 		return false
 	end
 
-	def solve(x,y,move,grid,xMoves,yMoves)
-		if(move == 64)
+	def solve(x,y,move,grid,xMoves,yMoves,n)
+		if(move == grid.length*grid.length)
 			grid[x][y] = move
 			return true	
 		end
 		grid[x][y] = move
-		neighbours(x,y,xMoves,yMoves,grid,move)
-
+		neighbours(x,y,xMoves,yMoves,grid,move,n)
 	end
 
-	def neighbours(x,y,xMoves,yMoves,grid,move)
+	def neighbours(x,y,xMoves,yMoves,grid,move,n)
 		count = 0
 		min = 8
 		all_neighbours = Array.new
@@ -50,15 +49,13 @@ class KnightChess
 			next_x = x+xMoves[j]
 			next_y = y+yMoves[j]
 
-			if(is_safe(next_x,next_y,grid)==true)
+			if(is_safe(next_x,next_y,grid,n)==true)
 				for i in 0...8
 					x1 = next_x+xMoves[i]
 					y1 = next_y+yMoves[i]
-
-					if(is_safe(x1,y1,grid))
+					if(is_safe(x1,y1,grid,n))
 						count = count+1
 					end
-
 				end
 				if(count<=min)
 					min=count
@@ -69,7 +66,7 @@ class KnightChess
 		end
 		curr_x = x+xMoves[index]
 		curr_y = y+yMoves[index]
-		solve(curr_x,curr_y,move+1,grid,xMoves,yMoves)
+		solve(curr_x,curr_y,move+1,grid,xMoves,yMoves,n)
 	end
 
 end
