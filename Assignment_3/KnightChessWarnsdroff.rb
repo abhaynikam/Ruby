@@ -39,11 +39,13 @@ class KnightChess
 		end
 		grid[x][y] = move
 		neighbours(x,y,xMoves,yMoves,grid,move,n)
+		return false
 	end
 
 	def neighbours(x,y,xMoves,yMoves,grid,move,n)
 		count = 0
 		min = 8
+		index = 8
 		all_neighbours = Array.new
 		for j in  0...8 
 			next_x = x+xMoves[j]
@@ -63,6 +65,9 @@ class KnightChess
 				end
 				count = 0
 			end	
+		end
+		if(index == 8)
+			return false
 		end
 		curr_x = x+xMoves[index]
 		curr_y = y+yMoves[index]
