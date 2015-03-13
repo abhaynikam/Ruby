@@ -7,7 +7,7 @@ def list_ruby_variable(pattern,file)
 			count = count+1
 		end	
 	end
-	puts "Instance Variable Count:#{count}"
+	puts "Variable Count:#{count}"
 end
 
 puts "Enter the file path:"
@@ -27,3 +27,6 @@ list_ruby_variable(/[^@@]@\w+/,file)
 
 puts "Golbal Variables:"
 list_ruby_variable(/\$\w+/,file)
+
+puts "Local Variables:"
+list_ruby_variable(/^\s*\w+\s*=/,file)
