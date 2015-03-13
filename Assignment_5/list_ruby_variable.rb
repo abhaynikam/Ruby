@@ -23,7 +23,7 @@ puts "Class Variables:"
 list_ruby_variable(/@@\w+/,file)
 
 puts "Instance Variables:"
-list_ruby_variable(/@\w+/,file)
+list_ruby_variable(/[^@@]@\w+/,file)
 
 puts "Golbal Variables:"
 list_ruby_variable(/\$\w+/,file)
