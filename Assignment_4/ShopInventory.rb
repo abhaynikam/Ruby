@@ -23,8 +23,6 @@ class ShopKeeper
 	require 'csv'
 	def set_product_details
 		puts "Product Details:"
-		puts "Product ID: "
-		@prod_id =  gets.chomp.to_s
 		puts "Product Name: "
 		@prod_name =  gets.chomp.to_s
 		puts "Product Price: "
@@ -36,6 +34,12 @@ class ShopKeeper
 	end
 
 	def prod_id
+		file1 = CSV.read('inventory.csv',headers:true)
+		file1.each do |row|
+			@prod_id = row['id']	
+		end
+		puts @prod_id
+		@prod_id = @prod_id.to_i + 1
 		@prod_id
 	end
 
@@ -57,7 +61,7 @@ class ShopKeeper
 
 	def add_product
 		file = CSV.open('inventory.csv',"a+")
-		file << [@prod_id,@prod_name,@prod_price,@prod_stock,@prod_company_name]
+		file << [prod_id,@prod_name,@prod_price,@prod_stock,@prod_company_name]
 		puts "added"
 		file.close
 	end
