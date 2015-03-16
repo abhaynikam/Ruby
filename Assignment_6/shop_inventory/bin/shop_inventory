@@ -1,0 +1,2 @@
+puts "Welcome to the Shop-Inventory\n\n"
+require 'shop_inventory'
