@@ -1,6 +1,6 @@
-rails new new_sti
+rails new blog
 
-cd sti_app/
+cd blog/
 
 rails g model Person name:string email:string type:string
 
@@ -27,21 +27,45 @@ rake db:migrate
 
 rails c
 
-User.create(name:"Vaibhav",email:"vaibhav@weboniselab.com")
-User.create(name:"Dnyaneshwar",email:"dnyaneshwar@weboniselab.com")
-User.create(name:"Sudeep",email:"sudeep@weboniselab.com")
-User.create(name:"Akash",email:"akash@weboniselab.com")
-User.create(name:"Tejaswini",email:"tejaswini@weboniselab.com")
+#adding post for new user
+user = User.create(name:"Vaibhav",email:"vaibhav@weboniselab.com")
+tmp = user.posts.build(content:"ROR blog",description:"ROR")
+tmp.save
 
-Admin.create(name:"Abhay",email:"abhay@weboniselab.com")
+user = User.create(name:"Dnyaneshwar",email:"dnyaneshwar@weboniselab.com")
+tmp = user.posts.build(content:"Ruby blog",description:"Ruby")
+tmp.save
 
-Post.create(content:"ROR blog",description:"ROR",user_id:1)
-Post.create(content:"Ruby blog",description:"Ruby",user_id:1)
-Post.create(content:"Java blog",description:"Java",user_id:1)
-Post.create(content:"My SQL blog",description:"My SQL",user_id:2)
-Post.create(content:"Monogo DB blog",description:"Monogo DB",user_id:3)
+user = User.create(name:"Sudeep",email:"sudeep@weboniselab.com")
+tmp = user.posts.build(content:"Java blog",description:"Java")
+tmp.save
 
-Account.create(account_num:839054264125,admin_id:6)
+user = User.create(name:"Akash",email:"akash@weboniselab.com")
+tmp = user.posts.build(content:"My SQL blog",description:"My SQL")
+tmp.save
+
+user = User.create(name:"Tejaswini",email:"tejaswini@weboniselab.com")
+tmp = user.posts.build(content:"Monogo DB blog",description:"Monogo DB")
+tmp.save
+
+user = User.create(name:"Pallavi",email:"pallavi@weboniselab.com")
+tmp = user.posts.build(content:"Data Structure blog",description:"Data Structure")
+tmp.save
+
+#adding new account for admin
+admin = Admin.create(name:"Abhay",email:"abhay@weboniselab.com")
+tmp = admin.accounts.build(account_num:101)
+tmp.save
+
+#finding user and adding post
+user =  User.find_by(id:2)
+tmp = user.posts.build(content:"Data structure blog",description:"Data Structure")
+tmp.save
+
+#finding admin and adding account
+admin = Admin.find_by(id:7)
+tmp = admin.accounts.build(account_num:102)
+tmp.save
 
 User.all
 Admin.all
